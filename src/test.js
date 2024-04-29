@@ -90,3 +90,11 @@ testUserDefinedMethods(
   190, // expected
   0 // initial value
 );
+
+// Test forEach
+testUserDefinedMethods(
+  numbers,
+  customMethods.forEach,
+  (item) => console.log(item),
+  undefined
+);

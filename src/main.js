@@ -22,7 +22,12 @@ class UserDefinedArray extends Array {
     }
     return accumulator;
   }
-  customForEach(callback) {}
+  customForEach(callback) {
+    const arrayItems = this.values();
+    for (const item of arrayItems) {
+      callback(item);
+    }
+  }
 }
 
 export default UserDefinedArray;
