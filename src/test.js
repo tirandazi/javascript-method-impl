@@ -14,7 +14,13 @@ const assertTestCase = (input = [], output = [], expected = []) => {
   console.assert(output === expected, message);
 };
 
-function testUserDefinedMethods(arr, action, callback, testCase) {
+function testUserDefinedMethods(
+  arr,
+  action,
+  callback,
+  testCase,
+  args = undefined
+) {
   let result;
   switch (action) {
     case customMethods.map:
@@ -24,7 +30,7 @@ function testUserDefinedMethods(arr, action, callback, testCase) {
       result = arr.customFilter(callback);
       break;
     case customMethods.reduce:
-      result = arr.customReduce(callback);
+      result = arr.customReduce(callback, args);
       break;
     case customMethods.forEach:
       result = arr.customForEach(callback);
@@ -40,6 +46,11 @@ const persons = new UserDefinedArray(
   { firstname: "Karun", lastname: "Nair" },
   { firstname: "Kiran", lastname: "Bedi" }
 );
+const groceryPriceList = new UserDefinedArray(
+  { product: "cookie", price: 55 },
+  { product: "brush", price: 35 },
+  { product: "soap", price: 100 }
+);
 
 // Test Map
 testUserDefinedMethods(numbers, customMethods.map, Math.sqrt, [3, 4, 8]);
@@ -53,7 +64,7 @@ testUserDefinedMethods(
   persons,
   customMethods.map,
   (item) => [item.firstname, item.lastname].join(" "),
-  ["Rajpal Yadav", "Karun Nair", "Kiran Bedi"]
+  ["Rajpal Yadav", "Karun Nair", "Kiran Bedi"] // expected
 );
 
 // Test Filter
@@ -61,5 +72,21 @@ testUserDefinedMethods(
   numbers,
   customMethods.filter,
   (item) => item > 15,
-  [16, 64]
+  [16, 64] // expected
+);
+
+// Test Reduce
+testUserDefinedMethods(
+  numbers,
+  customMethods.reduce,
+  (item, accumulator) => Math.abs(accumulator - item),
+  411,
+  500 // initial value
+);
+testUserDefinedMethods(
+  groceryPriceList,
+  customMethods.reduce,
+  (item, accumulator) => accumulator + item.price,
+  190, // expected
+  0 // initial value
 );

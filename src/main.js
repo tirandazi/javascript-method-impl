@@ -15,7 +15,13 @@ class UserDefinedArray extends Array {
     }
     return result;
   }
-  customReduce(callback) {}
+  customReduce(callback, accumulator) {
+    const arrayItems = this.values();
+    for (const item of arrayItems) {
+      accumulator = callback(item, accumulator);
+    }
+    return accumulator;
+  }
   customForEach(callback) {}
 }
 
