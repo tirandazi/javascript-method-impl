@@ -1,13 +1,12 @@
 {
   "name": "user_defined_methods",
   "version": "1.0.0",
-  "main": "main.js",
   "scripts": {
-    "main": "node main.js",
-    "test": "node test.js"
+    "main": "node src/main.js",
+    "test": "node src/test.js"
   },
   "type": "module",
-  "author": "",
+  "author": "Upendra Singh",
   "license": "ISC",
-  "description": ""
+  "description": "Implement javascript methods map(), reduce(), filter & forEach()"
 }

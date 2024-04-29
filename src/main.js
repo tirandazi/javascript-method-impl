@@ -7,7 +7,14 @@ class UserDefinedArray extends Array {
     }
     return result;
   }
-  customFilter(callback) {}
+  customFilter(callback) {
+    const arrayItems = this.values();
+    const result = new Array();
+    for (const item of arrayItems) {
+      if (callback(item)) result.push(item);
+    }
+    return result;
+  }
   customReduce(callback) {}
   customForEach(callback) {}
 }
